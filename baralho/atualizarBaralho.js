@@ -1,4 +1,4 @@
-let baralhos = ('./data.js');
+let baralhos = ('../data.js');
 
 function atualizarBaralho(id, novoBaralho){
     let index = baralhos.findIndex(baralho => baralho.id === id);

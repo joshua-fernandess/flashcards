@@ -1,14 +1,18 @@
 let baralhos = [
-{id: 1, titulo: "JavaScript Básico"},
-{id: 2, titulo: "HTML e CSS"},
-{id: 3, titulo: "Node.js"}
+{id: 1, titulo: "Álbuns de Billie Eilish"},
+{id: 2, titulo: "Fatos sobre Billie "}
 ];
 
 let flashcards = [
-    {id: 1, pergunta: "", resposta:"", idBaralho:"" },
-    {id: 2, pergunta: "", resposta:"", idBaralho:"" },
-    {id: 3, pergunta: "", resposta:"", idBaralho:"" },
-    {id: 4, pergunta: "", resposta:"", idBaralho:"" },
-    {id: 5, pergunta: "", resposta:"", idBaralho:"" },
-    {id: 6, pergunta: "", resposta:"", idBaralho:"" }
-]
+    {id: 1, pergunta: "Qual é o título do álbum de estreia de Billie Eilish?", 
+            resposta:"When We All Fall Asleep, Where Do We Go?", 
+            idBaralho:"1" },
+    {id: 2, pergunta: "Qual álbum de Billie Eilish foi lançado em 2021?", 
+            resposta:"Happier Than Ever", 
+            idBaralho:"1" },
+    {id: 3, pergunta: "Qual é o nome completo de Billie Eilish?",
+             resposta:"Billie Eilish Pirate Baird O'Connell", 
+             idBaralho:"2" },
+    {id: 4, pergunta: "Em que ano Billie Eilish ganhou o Grammy de Melhor Novo Artista?",
+         resposta:"2020", idBaralho:"2" }
+];
