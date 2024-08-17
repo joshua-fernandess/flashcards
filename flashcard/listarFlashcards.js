@@ -1,4 +1,4 @@
-let flashcards = require('../data.js');
+const { flashcards } = require('../data.js');
 
 function listarFlashcards(){
     if (flashcards === 0){

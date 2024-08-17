@@ -1,4 +1,4 @@
-let baralhos = require('../data.js');
+const {baralhos} = require('../data.js');
 
 function listarBaralhos(){
     if (baralhos === 0){

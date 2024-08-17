@@ -1,8 +1,10 @@
 const prompt = require('prompt-sync')();
+
 const criarBaralho = require('./baralho/criarBaralho.js');
 const listarBaralhos = require('./baralho/listarBaralhos.js');
 const atualizarBaralho = require('./baralho/atualizarBaralho.js');
 const deletarBaralho = require('./baralho/deletarBaralho.js');
+
 const atualizarFlashcard = require('./flashcard/atualizarFlashcard.js');
 const buscarFlashcardsPorBaralho = require('./flashcard/buscarFlashcardsPorBaralho.js');
 const buscarFlashcardsPorPergunta = require ('./flashcard/buscarFlashcardsPorPergunta.js');
@@ -13,27 +15,29 @@ const listarFlashcardsPorBaralhoId = require('./flashcard/listarFlashcardsPorBar
 
 function menu(){
     console.log(`
-    ------Menu----------
-    1. Criar baralho
-    2. Listar baralhos
-    3. Atualizar baralho
-    4. Deletar baralho
-    5. Criar flashcard
-    6. Listar flashcards
-    7. Listar flashcards por baralho
-    8. Buscar flashcard por pergunta
-    9. Buscar flashcard por baralho
-    10. Atualizar flashcard
-    11. Deletar flashcard
-    12. Sair
-    `);
+        ****************************************
+        *              Menu Principal          *
+        ****************************************
+        * 1. Criar baralho                      *
+        * 2. Listar baralhos                    *
+        * 3. Atualizar baralho                  *
+        * 4. Deletar baralho                    *
+        * 5. Criar flashcard                    *
+        * 6. Listar flashcards                  *
+        * 7. Listar flashcards por baralho      *
+        * 8. Atualizar flashcard                *
+        * 9. Deletar flashcard                  *
+        * 10. Buscar flashcard por pergunta     *
+        * 11. Buscar flashcard por baralho      *
+        * 12. Sair                              *
+        **************************************** `);
     
     let opcao = prompt('Digite a opção desejada: ');
 
     switch(opcao){
         case '1': 
-            let titulo = prompt('Informe o titulo: ');
-            criarBaralho({titulo});
+            let titulo = prompt('Informe o título: ');
+            criarBaralho({ titulo });
             console.log('Baralho adicionado com sucesso!');
             menu();
             break;
@@ -43,24 +47,24 @@ function menu(){
             break;
         case '3':
             listarBaralhos();
-            let idBaralho = parseInt(prompt("Escolha um baralho (ID): "));
+            let id = parseInt(prompt("Escolha um baralho (ID): "));
             let novoTitulo = prompt("Informe o titulo do baralho atualizado: ");
-            atualizarBaralho(idBaralho, {titulo: novoTitulo});
+            atualizarBaralho(id, {titulo: novoTitulo});
             console.log("Baralho atualizado com sucesso!");
             menu();
             break;
         case '4':
             listarBaralhos();
-            idBaralho = parseInt(prompt("Escolha um baralho (ID): "));
-            deletarBaralho(idBaralho);
+            let idDeletar = parseInt(prompt("Escolha um baralho (ID): "));
+            deletarBaralho(idDeletar);
             console.log("Baralho removido com sucesso!");
             menu();
             break;
         case '5':
-            let pergunta = prompt('Qual a pergunta?');
+            let pergunta = prompt('Qual a pergunta? ');
             let resposta = prompt('Qual é a resposta da pergunta? ');
             idBaralho = prompt('Qual é o ID do baralho que será adicionado o flashcard? ');
-            criarFlashcard ({idBaralho, pergunta, resposta});
+            criarFlashcard ({pergunta, resposta, idBaralho});
             console.log('Flashcard adicionado com sucesso!');
             menu();
             break;
@@ -69,33 +73,38 @@ function menu(){
             menu();
             break;
         case '7':
-            idBaralho = parseInt(prompt("Informe o ID do balharo para listar os flashcards"));
-            listarFlashcardsPorBaralhoId(idBaralho);
+            listarBaralhos();
+            let idBara = parseInt(prompt("Informe o ID do balharo para listar os flashcards: "));
+            listarFlashcardsPorBaralhoId(idBara);
             menu();
             break;
         case '8':
-            pergunta = prompt("Informe a pergunta para buscar: ");
-            buscarFlashcardsPorPergunta(pergunta);
-            menu();
-            break;
-        case '9':
-            idBaralho = parseInt(prompt("Informe o ID do baralho para buscar flashcards: "));
-            buscarFlashcardsPorBaralho(idBaralho);
-            menu();
-            break;
-        case '10':
             listarFlashcards();
             let idFlashcard = parseInt(prompt("Escolha um flashcard (ID): "));
             let novaPergunta = prompt("Informe a nova pergunta: ");
             let novaResposta = prompt("Informe a nova resposta: ");
-            atualizarFlashcard(idFlashcard, {pergunta: novaPergunta, resposta: novaResposta});
+            let novoBaralho = prompt("Informe o ID do baralho: ");
+            atualizarFlashcard(idFlashcard, {pergunta: novaPergunta, resposta: novaResposta, idBaralho: novoBaralho});
             console.log("Flashcard atualizado com sucesso!");
             menu();
             break;
-        case '11':
-            idFlashcard = parseInt(prompt("Escolha um flashcard (ID): "));
-            deletarFlashcard(idFlashcard);
+        case '9':
+            let idDelFlash = parseInt(prompt("Escolha um flashcard (ID): "));
+            deletarFlashcard(idDelFlash);
             console.log("Flashcard removido com sucesso!");
+            menu();
+            break;
+        case '10':
+            let buscarPergunta = prompt("Informe a pergunta do flashcard: ");
+            let resultado = buscarFlashcardsPorPergunta(buscarPergunta);
+            console.log(resultado);
+            menu();
+            break;
+        case '11':
+            listarBaralhos();
+            idBaralho = parseInt(prompt("Escolha um baralho para buscar o flashcard: "));
+            let flashcardsEncontrados = buscarFlashcardsPorBaralho(idBaralho);
+            console.log(flashcardsEncontrados);
             menu();
             break;
         case '12':

@@ -1,7 +1,7 @@
-let flashcards = require('../data.js');
+const { flashcards } = require('../data.js');
 
 function findFlashcardIndexById(id) {
-    flashcards.findIndex(flashcard => flashcard.id === id);
+    return flashcards.findIndex(flashcard => flashcard.id === id);
 }
 
 module.exports = findFlashcardIndexById;
