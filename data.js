@@ -17,4 +17,4 @@ let flashcards = [
                  resposta:"2020", idBaralho:2 }
 ];
 
-module.exports = {baralhos, flashcards}
+module.exports = {baralhos, flashcards} 
